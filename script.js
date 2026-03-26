@@ -3,26 +3,23 @@ let creators = [
     name: "Huang Yan",
     avatar: "images/huang.jpg",
     mainImage: "images/huang-main.jpg",
-    tags: ["#插畫", "#光影"],
-    desc: "擅長光影氛圍的插畫創作者",
-    gallery: [
-      "images/huang-1.jpg",
-      "images/huang-2.jpg"
-    ],
+    tags: ["插畫"],
+    desc: "光影系插畫創作者",
+    gallery: ["images/huang-1.jpg", "images/huang-2.jpg"],
     link: "https://huangyan9786.weebly.com/"
   },
   {
     name: "Mizuki",
     avatar: "images/mizuki.jpg",
     mainImage: "images/mizuki-main.jpg",
-    tags: ["#VTuber"],
-    desc: "可愛系角色創作者",
-    gallery: [
-      "images/mizuki-1.jpg"
-    ],
+    tags: ["VTuber"],
+    desc: "VTuber角色創作者",
+    gallery: ["images/mizuki-1.jpg"],
     link: "#"
   }
 ];
+
+let currentTag = "all";
 
 const list = document.getElementById("creatorList");
 
@@ -30,6 +27,9 @@ function renderList() {
   list.innerHTML = "";
 
   creators.forEach((c, i) => {
+
+    if (currentTag !== "all" && !c.tags.includes(currentTag)) return;
+
     const el = document.createElement("div");
     el.className = "creator";
     el.dataset.index = i;
@@ -38,53 +38,58 @@ function renderList() {
       <img src="${c.avatar}">
       <div>
         <div>${c.name}</div>
-        <small>${c.tags.join(" ")}</small>
+        <small>${c.tags.join(", ")}</small>
       </div>
     `;
 
-    el.addEventListener("click", () => {
-      selectCreator(i);
-    });
+    el.onclick = () => selectCreator(i);
 
     list.appendChild(el);
   });
 }
 
-function selectCreator(index) {
-  const c = creators[index];
+function selectCreator(i) {
+  const c = creators[i];
 
-  // 🔥 左側更新
-  document.getElementById("mainImage").src = c.mainImage;
-  document.getElementById("name").textContent = c.name;
-  document.getElementById("desc").textContent = c.desc;
-  document.getElementById("link").href = c.link;
+  mainImage.src = c.mainImage;
+  name.textContent = c.name;
+  desc.textContent = c.desc;
+  link.href = c.link;
 
-  document.getElementById("tags").innerHTML =
-    c.tags.map(t => `<span>${t}</span>`).join("");
+  tags.innerHTML = c.tags.map(t => `<span>${t}</span>`).join("");
 
-  // gallery
-  const gallery = document.getElementById("gallery");
   gallery.innerHTML = "";
 
   c.gallery.forEach(img => {
     const g = document.createElement("img");
     g.src = img;
-
-    g.addEventListener("click", () => {
-      document.getElementById("mainImage").src = img;
-    });
-
+    g.onclick = () => mainImage.src = img;
     gallery.appendChild(g);
   });
 
-  // 🔥 Active UI
-  document.querySelectorAll(".creator").forEach(el => {
-    el.classList.remove("active");
-  });
-
-  document.querySelector(`[data-index="${index}"]`)
-    .classList.add("active");
+  document.querySelectorAll(".creator").forEach(e => e.classList.remove("active"));
+  document.querySelector(`[data-index="${i}"]`)?.classList.add("active");
 }
+
+/* 搜尋 */
+document.getElementById("search").addEventListener("input", e => {
+  const val = e.target.value.toLowerCase();
+
+  document.querySelectorAll(".creator").forEach(el => {
+    el.style.display = el.innerText.toLowerCase().includes(val) ? "flex" : "none";
+  });
+});
+
+/* Tag */
+document.querySelectorAll(".tag-filter button").forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll(".tag-filter button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    currentTag = btn.dataset.tag;
+    renderList();
+  };
+});
 
 renderList();
 selectCreator(0);
