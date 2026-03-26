@@ -5,23 +5,20 @@
 body {
   margin: 0;
   font-family: sans-serif;
-  background: linear-gradient(135deg, #0a0f1f, #0f1a3a);
-  color: #fff;
+  color: white;
+  background: radial-gradient(circle at top, #0f1a3a, #050814);
 }
 
-/* 主架構 */
+/* layout */
 .container {
   display: flex;
   height: 100vh;
 }
 
-/* 左側 */
+/* 左 */
 .left {
   width: 70%;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  padding: 40px;
 }
 
 .viewer img {
@@ -29,20 +26,23 @@ body {
   height: 420px;
   object-fit: cover;
   border-radius: 16px;
-  transition: 0.3s;
+  box-shadow: 0 0 40px rgba(0,234,255,0.3);
 }
 
-/* 資訊 */
+/* info */
 .tags span {
   margin-right: 10px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(0,234,255,0.1);
   color: #00eaff;
 }
 
-/* 小圖 */
+/* gallery */
 .gallery {
   display: flex;
   gap: 10px;
-  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 .gallery img {
@@ -57,71 +57,93 @@ body {
   transform: scale(1.1);
 }
 
-/* 按鈕 */
+/* button */
 .btn {
-  display: inline-block;
   padding: 10px 20px;
-  margin-top: 10px;
-  background: linear-gradient(45deg, #00eaff, #7a5cff);
-  border-radius: 8px;
+  border-radius: 10px;
   text-decoration: none;
-  color: white;
+  display: inline-block;
 }
 
-/* 右側 */
+.primary {
+  background: linear-gradient(45deg, #00eaff, #7a5cff);
+}
+
+/* 右 */
 .right {
   width: 30%;
-  border-left: 1px solid rgba(255,255,255,0.1);
   padding: 20px;
+  border-left: 1px solid rgba(255,255,255,0.1);
   overflow-y: auto;
 }
 
-/* 卡片 */
+/* 搜尋 */
+.search {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 10px;
+}
+
+/* tag filter */
+.tag-filter {
+  margin-bottom: 15px;
+}
+
+.tag-filter button {
+  margin: 5px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  cursor: pointer;
+}
+
+.tag-filter button.active {
+  background: linear-gradient(45deg, #00eaff, #7a5cff);
+}
+
+/* creator */
 .creator {
   display: flex;
   gap: 10px;
   padding: 12px;
   border-radius: 12px;
-  cursor: pointer;
-  transition: 0.2s;
   margin-bottom: 10px;
+  cursor: pointer;
+
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(0,234,255,0.2);
+
+  transition: 0.3s;
 }
 
-/* hover 發光 */
 .creator:hover {
-  background: rgba(255,255,255,0.08);
+  transform: translateX(5px);
+  box-shadow: 0 0 15px #00eaff;
 }
 
-/* 🔥 選中效果 */
 .creator.active {
-  background: linear-gradient(45deg, rgba(0,234,255,0.2), rgba(122,92,255,0.2));
-  border: 1px solid #00eaff;
+  border-color: #7a5cff;
+  box-shadow: 0 0 20px #7a5cff;
 }
 
-/* 頭像 */
 .creator img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
 }
 
-/* RWD 🔥 */
+/* RWD */
 @media (max-width: 768px) {
-
   .container {
     flex-direction: column;
-    height: auto;
   }
 
-  .left {
+  .left, .right {
     width: 100%;
-  }
-
-  .right {
-    width: 100%;
-    border-left: none;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    max-height: 300px;
   }
 
   .viewer img {
