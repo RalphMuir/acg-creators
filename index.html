@@ -10,27 +10,46 @@
 
 <main class="container">
 
-  <!-- 左：展示區 -->
+  <!-- 左 -->
   <section class="left">
+
     <div class="viewer">
-      <img id="mainImage" />
+      <img id="mainImage">
     </div>
 
     <div class="info">
       <h1 id="name"></h1>
+
       <div id="tags" class="tags"></div>
+
       <p id="desc"></p>
 
       <div id="gallery" class="gallery"></div>
 
-      <a id="link" target="_blank" class="btn">查看作品</a>
+      <div class="buttons">
+        <a id="link" target="_blank" class="btn primary">前往網站</a>
+      </div>
     </div>
+
   </section>
 
-  <!-- 右：列表 -->
+  <!-- 右 -->
   <aside class="right">
-    <h2>Creators</h2>
+
+    <h2>ACG Creators</h2>
+
+    <!-- 🔍 搜尋 -->
+    <input id="search" class="search" placeholder="搜尋創作者 / Tag..." />
+
+    <!-- 🏷 Tag -->
+    <div class="tag-filter">
+      <button data-tag="all" class="active">全部</button>
+      <button data-tag="插畫">插畫</button>
+      <button data-tag="VTuber">VTuber</button>
+    </div>
+
     <div id="creatorList" class="list"></div>
+
   </aside>
 
 </main>
