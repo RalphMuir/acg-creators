@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ACG Creators</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main class="container">
+
+  <!-- 左：展示區 -->
+  <section class="left">
+    <div class="viewer">
+      <img id="mainImage" />
+    </div>
+
+    <div class="info">
+      <h1 id="name"></h1>
+      <div id="tags" class="tags"></div>
+      <p id="desc"></p>
+
+      <div id="gallery" class="gallery"></div>
+
+      <a id="link" target="_blank" class="btn">查看作品</a>
+    </div>
+  </section>
+
+  <!-- 右：列表 -->
+  <aside class="right">
+    <h2>Creators</h2>
+    <div id="creatorList" class="list"></div>
+  </aside>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

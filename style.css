@@ -1,0 +1,130 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: linear-gradient(135deg, #0a0f1f, #0f1a3a);
+  color: #fff;
+}
+
+/* 主架構 */
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* 左側 */
+.left {
+  width: 70%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.viewer img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 16px;
+  transition: 0.3s;
+}
+
+/* 資訊 */
+.tags span {
+  margin-right: 10px;
+  color: #00eaff;
+}
+
+/* 小圖 */
+.gallery {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.gallery img {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.gallery img:hover {
+  transform: scale(1.1);
+}
+
+/* 按鈕 */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 10px;
+  background: linear-gradient(45deg, #00eaff, #7a5cff);
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+}
+
+/* 右側 */
+.right {
+  width: 30%;
+  border-left: 1px solid rgba(255,255,255,0.1);
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* 卡片 */
+.creator {
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-bottom: 10px;
+}
+
+/* hover 發光 */
+.creator:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* 🔥 選中效果 */
+.creator.active {
+  background: linear-gradient(45deg, rgba(0,234,255,0.2), rgba(122,92,255,0.2));
+  border: 1px solid #00eaff;
+}
+
+/* 頭像 */
+.creator img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+/* RWD 🔥 */
+@media (max-width: 768px) {
+
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left {
+    width: 100%;
+  }
+
+  .right {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    max-height: 300px;
+  }
+
+  .viewer img {
+    height: 250px;
+  }
+}
